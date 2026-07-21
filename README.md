@@ -35,8 +35,22 @@ Node.js 22가 필요합니다.
 
 ```bash
 npm install --include=dev
+cp .env.example .env.local
 npm run dev
 ```
+
+주소·아파트 자동완성은 `/api/v1/addresses/search?query=` API를 호출합니다. 로컬에서는
+Vite가 이 요청을 `http://localhost:8081`로 프록시하므로 백엔드를 8081 포트에 먼저
+실행해야 합니다. 배포 환경에서 API가 다른 도메인이라면 `VITE_API_BASE_URL`을 설정하세요.
+
+선택한 아파트의 주변 시설은 `/api/apartment/facilities` API에서 가져옵니다. 아파트명,
+주소, 위도, 경도와 선택 시설을 쿼리 파라미터로 전달하며 응답의 생활권 요약, 점수와 시설별
+도보 시간을 상세 화면에 표시합니다.
+
+검색에서 선택한 아파트로 상세 화면에 진입하면 이름, 주소, 위도와 경도를 전달해
+`/api/apartment/full-view`를 호출합니다. 응답의 기본 정보, 시설 아이콘과 도보 시간,
+상대 좌표 기반 생활권 마커를 상세 화면에 표시합니다. 상세 조회는 아파트 ID나 DB에
+의존하지 않습니다.
 
 개발 서버가 실행되면 다음 주소로 접속합니다.
 

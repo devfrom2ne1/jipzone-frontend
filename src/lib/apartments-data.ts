@@ -4,7 +4,7 @@ export const FACILITIES: { key: FacilityKey; label: string }[] = [
   { key: "subway", label: "지하철" },
   { key: "daiso", label: "다이소" },
   { key: "oliveyoung", label: "올리브영" },
-  { key: "mart", label: "대형마트" },
+  { key: "mart", label: "마트" },
 ];
 
 export const WALKING_TIMES = [5, 10, 15, 20] as const;

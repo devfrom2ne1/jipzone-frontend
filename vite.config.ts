@@ -7,6 +7,24 @@
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
 export default defineConfig({
+  vite: {
+    server: {
+      proxy: {
+        "/api/v1": {
+          target: "http://localhost:8081",
+          changeOrigin: true,
+        },
+        "/api/apartment": {
+          target: "http://localhost:8081",
+          changeOrigin: true,
+        },
+        "/icons": {
+          target: "http://localhost:8081",
+          changeOrigin: true,
+        },
+      },
+    },
+  },
   // Vercel runs the SSR server from Nitro's Vercel Build Output API bundle.
   nitro: { preset: "vercel" },
   tanstackStart: {
