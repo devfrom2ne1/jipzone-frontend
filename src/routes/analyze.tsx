@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { AlertCircle, Check, Loader2 } from "lucide-react";
 import { MobileFrame } from "@/components/MobileFrame";
 import { BottomNav } from "@/components/BottomNav";
-import { apartmentFullViewQueryOptions } from "@/lib/apartment-full-view-api";
+import { lifeScoreQueryOptions } from "@/lib/life-score-api";
 
 type Search = {
   apartmentName: string;
@@ -37,14 +37,8 @@ function Analyze() {
   const longitude = Number(lng);
   const missingSelection =
     !apartmentName || !address || !Number.isFinite(latitude) || !Number.isFinite(longitude);
-  const selectedApartment = {
-    apartmentName,
-    address,
-    lat: latitude,
-    lng: longitude,
-  };
   const { data, error, isError, isFetching, refetch } = useQuery({
-    ...apartmentFullViewQueryOptions(selectedApartment),
+    ...lifeScoreQueryOptions({ lat: latitude, lng: longitude }),
     enabled: !missingSelection,
   });
 
@@ -87,9 +81,9 @@ function Analyze() {
           생활권을 분석하고 있어요
         </h1>
         <p className="mt-3 text-[14px] text-muted-foreground leading-relaxed">
-          주변 지하철, 다이소, 올리브영,
+          주변 마트, 다이소, 올리브영의
           <br />
-          마트까지 걸리는 시간을 확인 중입니다.
+          거리와 접근성 점수를 확인 중입니다.
         </p>
 
         <div className="mt-12 space-y-3">

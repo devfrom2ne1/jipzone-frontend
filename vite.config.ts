@@ -18,6 +18,10 @@ export default defineConfig({
           target: "http://localhost:8081",
           changeOrigin: true,
         },
+        "/api/life-score": {
+          target: "http://localhost:8081",
+          changeOrigin: true,
+        },
         "/icons": {
           target: "http://localhost:8081",
           changeOrigin: true,
